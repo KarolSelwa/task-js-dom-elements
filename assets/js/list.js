@@ -43,3 +43,52 @@ const list = [
         link: '#Osadzanie',
     }
 ];
+
+
+
+const mainUl = document.createElement('ul')
+const articeList = document.querySelector('.article__list')
+
+list.forEach(function (element) {
+    if (element.parentId === null) {
+        const firstLi = document.createElement('li')
+        const firstA = document.createElement('a')
+        firstA.setAttribute('href', element.link)
+        firstA.innerText = element.text
+        firstLi.appendChild(firstA)
+        firstLi.dataset.id = element.id
+        mainUl.appendChild(firstLi)
+        articeList.appendChild(mainUl)
+
+    }
+
+}
+)
+
+const li = document.querySelectorAll('li')
+li.forEach(function (element) {
+    const id = Number(element.dataset.id)
+    const children = list.filter(function (element) {
+        return element.parentId === id
+    });
+    const element1 = element
+
+    
+    // element1.appendChild(ulInternal)
+    const ulInternal = document.createElement('ul')
+    children.forEach(function (element) {
+        const liInternal = document.createElement('li')
+        const aInternal = document.createElement('a')
+        liInternal.appendChild(aInternal)
+        ulInternal.appendChild(liInternal)
+        element1.appendChild(ulInternal)
+        aInternal.setAttribute('href', element.link)
+        aInternal.dataset.id = element.id
+        aInternal.innerText = element.text
+        // console.log(element)
+    })
+    
+    console.log(element1)
+
+})
+
